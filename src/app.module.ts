@@ -4,12 +4,16 @@ import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from '@entities/users/users.module';
+import { EmployeeModule } from '@entities/employee/employee.module';
+import { EquipmentModule } from '@entities/equipment/equipment.module';
 
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true, envFilePath: '.env' }),
     UsersModule,
+    EmployeeModule,
+    EquipmentModule,
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (config: ConfigService) => ({

@@ -1,28 +1,31 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
 
-import { E_Gender } from './types'
-
+export enum UserRole {
+  ADMIN = 'admin',
+  EDITOR = 'editor',
+  VIEWER = 'viewer',
+}
 
 @Entity('users')
 export class UserEntity {
   @PrimaryGeneratedColumn()
-  id: number
+  id: number;
 
   @Column({ name: 'email', type: 'varchar' })
-  email: string
+  email: string;
 
   @Column({ name: 'password', type: 'varchar' })
-  password: string
+  password: string;
 
   @Column({ name: 'name_first', type: 'varchar' })
-  nameFirst: string
+  nameFirst: string;
 
   @Column({ name: 'name_last', type: 'varchar' })
-  nameLast: string
+  nameLast: string;
 
   @Column({ name: 'birth_date', type: 'timestamp', nullable: true })
-  birthDate: Date
+  birthDate: Date;
 
-  @Column({ name: 'gender', type: 'enum', enum: E_Gender, nullable: true })
-  gender: E_Gender | null
+  @Column({ name: 'user_role', type: 'enum', enum: UserRole, default: UserRole.VIEWER })
+  role: UserRole;
 }
