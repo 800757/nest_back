@@ -3,10 +3,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UsersModule } from '@entities/users/users.module';
-import { EmployeeModule } from '@entities/employee/employee.module';
-import { EquipmentModule } from '@entities/equipment/equipment.module';
-
+import { UsersModule } from './users/users.module';
+import { AuthModule } from './auth/auth.module';
+import { EmployeeModule } from './employee/employee.module';
+import { EquipmentModule } from './equipment/equipment.module';
 
 @Module({
   imports: [
@@ -29,7 +29,8 @@ import { EquipmentModule } from '@entities/equipment/equipment.module';
         logging: true,
       }),
       inject: [ConfigService],
-    })
+    }),
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],
